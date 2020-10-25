@@ -1,0 +1,118 @@
+// README.adoc - (C) 2020 by Tom Swan - GPLv3 (see license.txt)
+
+:author: Tom Swan
+:email: <tom@tomswan.com>
+:description: SneakSurround, a snake-like Chip8 game for the Cosmac VIP
+:keywords: GAMES VINTAGE PROGRAMMING CHIP8 OCTO RCA COSMAC VIP 
+:copyright: © 2020 by Tom Swan
+:favicon: https://www.tomswan.com/image/favicon.png
+:icons: font
+:idprefix:
+:idseparator: -
+:sectanchors:
+:imagesdir: image
+:license: LICENSE.txt[License Text]
+:dot: .
+:ellipsis: …
+:hatch: #
+:pilcrow: ¶
+:star: *
+:tilde: ~
+:ul: _
+
+:pips: https://github.com/TomSwan/pips-for-vips
+:mychip8: https://github.com/TomSwan/mychip8
+
+= _SneakSurround,_ a Chip8 Game 
+
+by Tom Swan
+
+Originally named "Surround" from my book link:{pips}[Pips for VIPS I], published in 1979, the revised "SneakSurround," written in Octo, is a new and challenging snake-like Chip8 game offering two turns on each of six levels of play.
+
+Keys WASD direct the snake (mobile users simply swipe) to eat the single-pixel targets. (Perhaps they are mice.) Avoid all obstructions. Hitting anything except a target including the snake's own tail loses. Consuming all targets on all levels and sub-levels wins. 
+
+[red yellow-background big]*Click Image to Play _SneakSurround_ Online!*
+
+image::sneaksurround-screen.png[Screen Image, float="right", link="https://tomswan.com/pub/sneaksurround"]
+
+Can you survive through all six levels? Although easy on lower levels, higher levels are quite challenging because, on every level and sub-level, the hungry snake grows a little longer and a little faster as it feeds on targets -- I mean mice!
+
+TIP: Remember that the screen wraps around at the edges! To restart the game, simply refresh your browser.
+
+NOTE: Targets are randomly placed using AI to ensure their separation from other objects making every game both different and winnable!
+
+- - -
+
+// -----------------------------------------------------------------
+
+== Source Code
+
+All source code to SneakSurround is included in file
+
+    sneaksurround.8o
+
+The game runs online in Octo, but you may also compile it to Chip8 byte codes using the command:
+
+    octo sneaksurround.8o sneaksurround.ch8
+
+To run the game in link:{mychip8}[MyChip8], enter
+
+    mychip8 -k sneaksurround.ch8
+
+NOTE: The -k option activates alternate cursor keys so you can press the arrow keys instead of WSAD for directing the snake. The online version and Octo online do the same automatically.
+
+- - -
+
+// -----------------------------------------------------------------
+
+== Suggested Modifications
+
+Two simple modifications to the source code are useful for adjusting game levels. When you grow tired of always starting at Level One, for example, locate the jump instruction just below `: main` 
+
+----
+title_page
+jump level_one
+----
+
+Change the jump label to any of the six programmed levels. To start with level three, for example, change the jump to:
+
+----
+...
+jump level_three
+----
+
+To change the maximum level needed to win the game requires a different kind of modification. Around line 23, look for the text shown here:
+
+----
+: level
+0x01
+: max_level
+0x06  # const 1..6; set lower for easier game
+----
+
+Change the last line's byte value to the highest level needed for a win, from 1 to 6. For example, to win after completing level 4, change the byte value to:
+
+----
+0x04  # const...
+----
+
+- - -
+
+// -----------------------------------------------------------------
+
+[[info]]
+== More Information
+
+For more stuff, browse my repositories on GitHub. It's where I store all of my downloads, files and example programs, new and old. Everything is free for the taking. 
+
+Please also follow the links below to visit my web site, GitHub and YouTube channels, and listings for books I've written, sometimes even the books themselves! Write to me at tom@tomswan.com. Good luck!
+
+- Website: https://www.tomswan.com
+
+- Book Listings: https://tomswan.com/pub/collections/
+
+- GitHub: https://github.com/TomSwan
+
+- YouTube: https://www.youtube.com/user/TomSwanPlaysGuitar
+
+- Twitter: https://twitter.com/TomSwanGuitar
